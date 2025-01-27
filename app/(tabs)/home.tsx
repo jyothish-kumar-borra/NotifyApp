@@ -1,15 +1,35 @@
-import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Tabs } from 'expo-router';
+import { useLayoutEffect } from "react";
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  Image,
+  View,
+  TouchableOpacity,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "expo-router";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, [navigation]);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {/* Navbar */}
         <View style={styles.navbar}>
-          <Text style={styles.logo}>Notify</Text>
+          <Image
+                      source={require('../../assets/images/notify-logo.png')}
+                      style={styles.navbarLogo}
+                      resizeMode="contain"
+                    />
           <View style={styles.notificationIcon}>
             <Ionicons name="notifications" size={24} color="#666" />
             <View style={styles.badge}>
@@ -54,7 +74,15 @@ const HomeScreen = () => {
   );
 };
 
-const Card = ({ icon, title, color }: { icon: any; title: string; color: string }) => (
+const Card = ({
+  icon,
+  title,
+  color,
+}: {
+  icon: any;
+  title: string;
+  color: string;
+}) => (
   <TouchableOpacity style={styles.card}>
     <View style={styles.cardContent}>
       <Ionicons name={icon as any} size={24} color={color} />
@@ -68,7 +96,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: "#F5F5F5",
   },
   navbar: {
     flexDirection: 'row',
@@ -77,27 +105,26 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#FFF',
   },
-  logo: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#2563EB',
+  navbarLogo: {
+    width: 100,
+    height: 40,
   },
   notificationIcon: {
-    position: 'relative',
+    position: "relative",
   },
   badge: {
-    position: 'absolute',
+    position: "absolute",
     top: -5,
     right: -5,
-    backgroundColor: 'red',
+    backgroundColor: "red",
     borderRadius: 10,
     width: 20,
     height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   badgeText: {
-    color: '#FFF',
+    color: "#FFF",
     fontSize: 12,
   },
   welcomeSection: {
@@ -105,40 +132,40 @@ const styles = StyleSheet.create({
   },
   welcomeText: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   trendingSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: 8,
   },
   trendingText: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
     marginRight: 4,
   },
   announcementBox: {
     marginTop: 16,
     padding: 16,
-    backgroundColor: '#E9D5FF',
+    backgroundColor: "#E9D5FF",
     borderRadius: 8,
   },
   announcementText: {
     fontSize: 16,
-    color: '#666',
+    color: "#666",
   },
   cardsSection: {
     padding: 16,
   },
   card: {
-    backgroundColor: '#FFF',
+    backgroundColor: "#FFF",
     borderRadius: 8,
     marginBottom: 16,
     elevation: 2,
   },
   cardContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     padding: 16,
   },
   cardText: {
@@ -146,21 +173,21 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
     paddingVertical: 12,
     borderTopWidth: 1,
-    borderTopColor: '#E0E0E0',
+    borderTopColor: "#E0E0E0",
   },
   addButton: {
-    backgroundColor: '#4A90E2',
+    backgroundColor: "#4A90E2",
     width: 48,
     height: 48,
     borderRadius: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: -20,
   },
 });
